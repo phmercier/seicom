@@ -1,0 +1,81 @@
+## Common make rules for BitCloud applications
+
+## STACK COMPONENTS PATHS -----------------------------
+ifeq ($(HAL), ATMEGA1281)
+  HAL_HWD_PATH = $(STACK_PATH)/HAL/atmega1281/HAL_HWD
+endif
+ifeq ($(HAL), ATMEGA2561)
+  HAL_HWD_PATH = $(STACK_PATH)/HAL/atmega1281/HAL_HWD
+endif
+ifeq ($(HAL), AT91SAM7X256)
+  HAL_HWD_PATH = $(STACK_PATH)/HAL/at91sam7x256/HAL_HWD
+endif
+HAL_HWI_PATH = $(STACK_PATH)/HAL
+BSP_PATH = $(STACK_PATH)/BSP
+MAC_PATH = $(STACK_PATH)/MAC_PHY
+NWK_PATH = $(STACK_PATH)/NWK
+APS_PATH = $(STACK_PATH)/APS
+ZDO_PATH = $(STACK_PATH)/ZDO
+PDS_PATH = $(STACK_PATH)/PersistDataServer
+TC_PATH  = $(STACK_PATH)/Security/TrustCentre
+SSP_PATH  = $(STACK_PATH)/Security/ServiceProvider
+SE_PATH  = $(STACK_PATH)/SystemEnvironment
+CS_PATH  = $(STACK_PATH)/ConfigServer
+APP_PATH = .
+LIB_PATH = $(STACK_PATH)/../lib
+
+## PATHS FOR APPLICATIONS USING COMMON OBJECTS AND NET INTERFACE ---
+INCLUDES += -I$(COMMON_DIR)/implementation \
+            -I$(COMMON_DIR)/include \
+            -I$(COMMON_DIR)/interface
+
+ifeq ($(HAL), ATMEGA1281)
+  NET_HAL_PATH = $(COMMON_DIR)/hal/atmega1281
+endif
+ifeq ($(HAL), AT91SAM7X256)
+  NET_HAL_PATH = $(COMMON_DIR)/hal/at91sam7x256
+endif
+
+INCLUDES += \
+        -I$(NET_HAL_PATH)/implementation \
+        -I$(NET_HAL_PATH)/include \
+        -I$(NET_HAL_PATH)/interface
+
+VPATH =  $(NET_HAL_PATH)/implementation: \
+         $(NET_HAL_PATH)/src: \
+         $(COMMON_DIR)/implementation: \
+         $(COMMON_DIR)/src:
+
+
+## STACK INCLUDE PATHS -------------------------------
+INCLUDES +=                          \
+	-I$(SE_PATH)/include                 \
+	-I$(APS_PATH)/include                \
+	-I$(NWK_PATH)/include                \
+	-I$(ZDO_PATH)/include                \
+	-I$(MAC_PATH)/include                \
+  -I$(HAL_HWI_PATH)/include            \
+  -I$(HAL_HWD_PATH)/include            \
+  -I$(BSP_PATH)/include                \
+	-I$(CS_PATH)/include                 \
+	-I$(PDS_PATH)/include                \
+	-I$(TC_PATH)/include                 \
+	-I$(SSP_PATH)/include
+
+## stack objects to be built with application
+STACK_OBJ = configServer.o pdsCrcService.o pdsDataServer.o pdsWriteData.o
+
+## path to stack objects
+VPATH += $(CS_PATH)/src: $(PDS_PATH)/src:
+
+## Intel Hex file production options.
+HEX_FLASH_FLAGS = -R .eeprom
+HEX_EEPROM_FLAGS = -j .eeprom
+HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
+HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0
+
+## target path
+TARGET_PATH = ./objs
+
+
+# eof Makerules

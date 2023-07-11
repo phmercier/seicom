@@ -1,0 +1,88 @@
+
+Idées pour l'année prochaine :
+
+- Créer des failles sur le poste prof.
+- Donner une faille (contrainte) à chaque groupe.
+- Présenter Kali Linux et répartir des outils à étudier avant le TP test.
+
+ * Clé WEP sur le wifi
+ * mot de passe basique sur une entrée (toto, 1234) :
+	- ssh d'un poste réseau
+	- mot de passe admin pfsense
+	- mot de passe Cisco point d'accès wifi
+	
+
+ * Failles Groupe 1 :
+	-> Mot de passe ssh du serveur : "password"
+	-> Une clé WEP
+	-> le nombre maximum de règles sur le FireWall sera limité à 2
+	-> la règle (deny any any) est interdite sur le FireWall
+	-> le filtrage par adresse MAC est interdit car trop contraignant
+
+ * Failles Groupe 2 :
+	-> Mot de passe pfsense : "qwerty"
+	-> Un poste "passerelle" avec carte wlan sur wifi LAN et carte eth0 sur VLAN50
+	-> le nombre maximum de règles sur le FireWall sera limité à 2
+	-> la règle (deny any any) est interdite sur le FireWall
+	-> le filtrage par adresse MAC est interdit car trop contraignant
+
+ * Failles poste prof :
+	-> VPN ouvert
+	-> Notamment ssh
+
+------------------------------
+
+Outils :
+ * Hydra (attaque brute force)
+ * Aircrack
+ * Kali Linux -> regarder les outils, se les répartir
+ * Montrer le OneTouch (avec démo, analyse de leur topologie)
+
+------------------------------
+
+Pas d'interventions physiques sur les postes du groupe adverse.
+
+------------------------------
+
+Organisation de la journée (7h de TP)
+
+8h00 -> lancement (horaires, organisation, failles, début du diaporama)
+	- Remise des stations de travail - portables de préférence
+10h00 -> Début des attaques
+12h00 -> Pause déjeuner
+////////////////////////
+13h30 -> Reprise de l'activité
+14h00 -> Echanges des infrastructures (Prévoir éventuellement 35 ou 45 mn)
+15h00 -> Restitution (diapos)
+	- Points clés de la config (pfsense, wifi, filtrage, vpn, mise en place serveur web)
+	- Attaques effectuées (comment ? outils ? bilan)
+	- Audit (points d'intérêts adverses : bons ou mauvais)
+	- Conclusion sur la sécurité (point positifs, négatifs ? Si c'était à refaire...)
+	- Démo ? (attaque, bonne config -> connexion au wifi, filtrage réussi, etc.)
+
+Remise en état (15 min)
+	-> Mot de passe des postes (remettre sur local)
+	-> Remise en état des postes au niveau réseau et des fichiers de config
+
+16H30 -> Fin
+
+
+- Voir avec Mickael : mettre le cours/TD une semaine avant le TP eval pour se familiariser aux outils.
+
+
+Attention
+
+ - VLAN Groupe des étudiants avec nombre de ports suffisants (Plus de 4 probablement)
+ - Mettre un PC portable (Prof) sur le VLAN 50 (Simulation Internet et tests NAT)
+ - Fixer un maximum de règles sur le FireWall (2 ou 3) afin de libérer des accès
+ - Interdire la règle : deny any any
+
+
+Remarques
+
+ * Prévoir un TP axé attaques
+ * Prévoir des exemples d'utilisation de Aircrack 
+ * Attention à la répartition des étudiants dans le groupe. S'assurer qu'ils soient au moins 2 ou 3 à être concernés par des attaques
+
+
+

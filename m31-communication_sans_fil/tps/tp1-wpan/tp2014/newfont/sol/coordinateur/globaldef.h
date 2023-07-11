@@ -1,0 +1,9 @@
+#ifndef GLOBAL_H_INCLUDED
+#define GLOBAL_H_INCLUDED
+
+
+#define PCF8575_LCD_ADDRESS (0x40 >> 1)
+#define PCF8575_SWITCH_ADDRESS (0x42 >> 1)
+
+
+#endif // GLOBAL_H_INCLUDED

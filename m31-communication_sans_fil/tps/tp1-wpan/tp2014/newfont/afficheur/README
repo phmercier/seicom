@@ -1,0 +1,5 @@
+Attention à commenter/décommenter la bonne ligne de localisation des fontes dans afficheur.c en fonction du numéro de l'afficheur.
+
+font_t font_7x11        = {0x0241,14,7,11};	// afficheurs N°3,4, 5 (nouvelles fontes)
+//font_t font_7x11        = {0x012D,14,7,11};  // afficheurs N°1,2,6 (anciennes fontes : à reprog)
+

@@ -1,0 +1,45 @@
+#----------------------------------------------
+#User application makerules - should be included into user application Makefile
+#----------------------------------------------
+
+#-Compiler type definition---------------------
+COMPILER_TYPE = GCC
+#-Tools definitions----------------------------
+AS      = avr-as
+LD      = avr-ld
+CC      = avr-gcc
+CPP     = avr-g++
+AR      = avr-ar
+NM      = avr-nm
+STRIP   = avr-strip
+OBJCOPY = avr-objcopy
+OBJDUMP = avr-objdump
+SIZE    = avr-size
+
+#-Compiler flags-------------------------------
+CFLAGS = -Os -Wall -W -ffunction-sections -mmcu=atmega1281 -DATMEGA1281 -DCLOCK -DHAL_4MHz -DMESHBEAN -DNONE_OS -DAT86RF230 -D_COORDINATOR_ -DFFD -D_COMMISSIONING_ -DLEAVE_UNKNOWN_DEVICE
+#CFLAGS += -D_BUTTONS_ -D_TEMPERATURE_SENSOR_ -D_LIGHT_SENSOR_ -D_BATTERY_SENSOR_ -D_LEDS_ -D_SLIDERS_
+
+#-Libraries names------------------------------
+STACK_LIB = BcCoordinator
+BSP_LIB   = BSPMeshBean
+CS_LIB    = ConfigServer
+PDS_LIB   = PersistDataServer
+
+#-Platform definitions-------------------------
+HAL   = ATMEGA1281
+BOARD = MESHBEAN
+
+#-Stack components paths-----------------------
+MAC_PHY_PATH = $(COMPONENTS_PATH)/./MAC_PHY
+HAL_HWD_PATH = $(COMPONENTS_PATH)/./HAL/atmega1281/HAL_HWD
+HAL_PATH     = $(COMPONENTS_PATH)/./HAL
+NWK_PATH     = $(COMPONENTS_PATH)/./NWK
+APS_PATH     = $(COMPONENTS_PATH)/./APS
+ZDO_PATH     = $(COMPONENTS_PATH)/./ZDO
+SSP_PATH     = $(COMPONENTS_PATH)/./Security/ServiceProvider
+TC_PATH      = $(COMPONENTS_PATH)/./Security/TrustCentre
+CS_PATH      = $(COMPONENTS_PATH)/./ConfigServer
+SE_PATH      = $(COMPONENTS_PATH)/./SystemEnvironment
+PDS_PATH     = $(COMPONENTS_PATH)/./PersistDataServer
+BSP_PATH     = $(COMPONENTS_PATH)/./BSP
